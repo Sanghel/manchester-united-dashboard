@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  check-changes:
+    name: Check Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: |
+          if [ -f "package.json" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  lint:
+    name: Lint
+    needs: check-changes
+    if: needs.check-changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint --if-present
+
+  typecheck:
+    name: TypeScript
+    needs: check-changes
+    if: needs.check-changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npx tsc --noEmit --skipLibCheck || true
+
+  test:
+    name: Tests
+    needs: check-changes
+    if: needs.check-changes.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run test --if-present -- --passWithNoTests
+
+  build:
+    name: Build
+    needs: [lint, typecheck, test]
+    if: |
+      always() &&
+      needs.check-changes.outputs.should_run == 'true' &&
+      (needs.lint.result == 'success' || needs.lint.result == 'skipped') &&
+      (needs.typecheck.result == 'success' || needs.typecheck.result == 'skipped') &&
+      (needs.test.result == 'success' || needs.test.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --if-present
