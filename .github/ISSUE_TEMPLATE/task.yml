@@ -1,0 +1,47 @@
+name: Task
+description: Tarea de desarrollo
+title: "[TASK-XXX] "
+labels: ["type: task"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Descripcion de la tarea"
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripcion
+      description: Que se debe implementar?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de Aceptacion
+      description: Lista de criterios que deben cumplirse
+      value: |
+        - [ ] Criterio 1
+        - [ ] Tests unitarios con coverage >80%
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencias
+      description: Issues de los que depende esta tarea
+  - type: input
+    id: estimation
+    attributes:
+      label: Estimacion
+      placeholder: "X horas"
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agente Asignado
+      options:
+        - Setup Agent
+        - Component Agent
+        - Hook Agent
+        - Service Agent
+        - Testing Agent
+        - Docs Agent
+        - Architect Agent
