@@ -5,17 +5,20 @@ import { cva, type VariantProps } from 'class-variance-authority'
 const badgeVariants = cva('inline-flex items-center font-semibold rounded-full', {
   variants: {
     variant: {
-      default: 'bg-gray-100 text-gray-700',
-      primary: 'bg-primary-100 text-primary-700',
-      success: 'bg-green-100 text-green-700',
-      warning: 'bg-yellow-100 text-yellow-700',
-      danger: 'bg-red-100 text-red-700',
-      info: 'bg-blue-100 text-blue-700',
+      /** WIN result — green */
+      win: 'bg-[#10B981] text-white',
+      /** DRAW result — orange */
+      draw: 'bg-[#F59E0B] text-white',
+      /** LOSS result — red */
+      loss: 'bg-[#EF4444] text-white',
+      /** General / neutral dark badge */
+      default: 'bg-[#2A2A2A] text-white',
+      /** MU gold on dark — for competition names, position badges */
+      gold: 'bg-[#FFB81C] text-[#1A1A1A]',
     },
     size: {
       sm: 'text-xs px-2 py-0.5',
       md: 'text-sm px-2.5 py-0.5',
-      lg: 'text-base px-3 py-1',
     },
   },
   defaultVariants: {
@@ -31,12 +34,14 @@ export interface BadgeProps extends VariantProps<typeof badgeVariants> {
 }
 
 /**
- * Badge for status labels, counts, and categories.
+ * MU-themed badge for match results (WIN/DRAW/LOSS), competition names, and position labels.
  *
  * @example
  * ```tsx
- * <Badge variant="success">Active</Badge>
- * <Badge variant="danger" size="md">Error</Badge>
+ * <Badge variant="win">WIN</Badge>
+ * <Badge variant="draw">DRAW</Badge>
+ * <Badge variant="loss">LOSS</Badge>
+ * <Badge variant="gold">Premier League</Badge>
  * ```
  */
 export function Badge({ children, variant, size, className }: BadgeProps) {

@@ -3,17 +3,14 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        primary: 'bg-primary-600 text-white hover:bg-primary-700 focus-visible:ring-primary-500',
-        secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 focus-visible:ring-gray-400',
-        outline:
-          'border border-gray-300 bg-transparent hover:bg-gray-50 focus-visible:ring-gray-400',
-        ghost: 'hover:bg-gray-100 text-gray-700 focus-visible:ring-gray-400',
-        danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500',
-        success: 'bg-green-600 text-white hover:bg-green-700 focus-visible:ring-green-500',
+        primary: 'bg-[#DA291C] text-white hover:bg-[#c4251a] focus-visible:ring-[#DA291C]',
+        secondary: 'bg-[#2A2A2A] text-white hover:bg-[#3a3a3a] focus-visible:ring-[#2A2A2A]',
+        ghost: 'bg-transparent text-white hover:bg-[#2A2A2A] focus-visible:ring-[#2A2A2A]',
+        danger: 'bg-[#EF4444] text-white hover:bg-[#dc2626] focus-visible:ring-[#EF4444]',
       },
       size: {
         sm: 'h-8 px-3 text-sm gap-1.5',
@@ -36,18 +33,16 @@ export interface ButtonProps
   leftIcon?: ReactNode
   /** Icon after the label */
   rightIcon?: ReactNode
-  /** Expands button to full container width */
-  fullWidth?: boolean
 }
 
 /**
- * Primary button component with multiple variants, sizes and states.
+ * MU-themed button with 4 variants (primary/secondary/ghost/danger), 3 sizes, and loading state.
  *
  * @example
  * ```tsx
  * <Button variant="primary" size="md">Save</Button>
  * <Button variant="danger" loading>Deleting...</Button>
- * <Button variant="outline" leftIcon={<PlusIcon />}>Add team</Button>
+ * <Button variant="ghost" leftIcon={<PlusIcon />}>Add</Button>
  * ```
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -59,9 +54,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       leftIcon,
       rightIcon,
-      fullWidth = false,
       disabled,
       children,
+      type = 'button',
       ...props
     },
     ref
@@ -69,9 +64,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type}
         disabled={disabled || loading}
         aria-disabled={disabled || loading}
-        className={cn(buttonVariants({ variant, size }), fullWidth && 'w-full', className)}
+        className={cn(buttonVariants({ variant, size }), className)}
         {...props}
       >
         {loading ? (

@@ -1,4 +1,4 @@
-export { Card, cardVariants } from './Card'
+export { Card } from './Card'
 export type { CardProps } from './Card'
 
 export { CardHeader } from './CardHeader'
