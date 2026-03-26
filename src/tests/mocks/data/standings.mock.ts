@@ -1,2 +1,43 @@
-// Placeholder mock data for standings — populated in TASK-064+
-export const mockStandings = []
+import type { Standing } from '@/services/sports'
+
+export const mockStandings: Standing[] = [
+  {
+    position: 1,
+    team: { id: 50, name: 'Manchester City', shortName: 'MCI', primaryColor: '#6CABDD' },
+    played: 28,
+    won: 20,
+    drawn: 4,
+    lost: 4,
+    goalsFor: 62,
+    goalsAgainst: 28,
+    goalDifference: 34,
+    points: 64,
+    form: ['W', 'W', 'D', 'W', 'W'],
+  },
+  {
+    position: 2,
+    team: { id: 40, name: 'Liverpool', shortName: 'LIV', primaryColor: '#C8102E' },
+    played: 28,
+    won: 19,
+    drawn: 5,
+    lost: 4,
+    goalsFor: 68,
+    goalsAgainst: 32,
+    goalDifference: 36,
+    points: 62,
+    form: ['W', 'W', 'W', 'D', 'W'],
+  },
+  {
+    position: 6,
+    team: { id: 33, name: 'Manchester United', shortName: 'MUN', primaryColor: '#DA291C' },
+    played: 28,
+    won: 12,
+    drawn: 4,
+    lost: 12,
+    goalsFor: 29,
+    goalsAgainst: 43,
+    goalDifference: -14,
+    points: 40,
+    form: ['L', 'W', 'D', 'L', 'W'],
+  },
+]
