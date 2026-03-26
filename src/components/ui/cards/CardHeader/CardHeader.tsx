@@ -1,7 +1,7 @@
 import { type HTMLAttributes, type ReactNode, forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
-export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Main title */
   title?: ReactNode
   /** Subtitle or description */
