@@ -1,4 +1,2 @@
 export { ScoreBoard } from './ScoreBoard'
 export type { ScoreBoardProps } from './ScoreBoard'
-export { LiveScore } from './LiveScore'
-export type { LiveScoreProps } from './LiveScore'
