@@ -48,5 +48,3 @@ export function Spinner({ size, color, label = 'Loading...', className }: Spinne
     </span>
   )
 }
-
-export { spinnerVariants }

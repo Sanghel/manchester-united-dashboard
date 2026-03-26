@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import prettierConfig from 'eslint-config-prettier'
 
 export default tseslint.config(
-  { ignores: ['dist', 'storybook-static', 'coverage', 'playwright-report'] },
+  { ignores: ['dist', 'storybook-static', 'coverage', 'playwright-report', 'mocks/'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, prettierConfig],
     files: ['**/*.{ts,tsx}'],

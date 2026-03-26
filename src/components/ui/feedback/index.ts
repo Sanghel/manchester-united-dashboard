@@ -1,10 +1,10 @@
-export { Spinner, spinnerVariants } from './Spinner'
+export { Spinner } from './Spinner'
 export type { SpinnerProps } from './Spinner'
 
 export { Skeleton } from './Skeleton'
 export type { SkeletonProps } from './Skeleton'
 
-export { Badge, badgeVariants } from './Badge'
+export { Badge } from './Badge'
 export type { BadgeProps } from './Badge'
 
 export { Chip } from './Chip'

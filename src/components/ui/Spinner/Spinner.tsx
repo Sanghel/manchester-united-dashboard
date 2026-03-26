@@ -55,5 +55,3 @@ export function Spinner({
     </span>
   )
 }
-
-export { spinnerVariants }
