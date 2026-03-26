@@ -3,8 +3,12 @@ import { renderHook, act } from '@testing-library/react'
 import { useDebouncedCallback } from './useDebouncedCallback'
 
 describe('useDebouncedCallback', () => {
-  beforeEach(() => vi.useFakeTimers())
-  afterEach(() => vi.useRealTimers())
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
 
   it('returns a stable function', () => {
     const callback = vi.fn()

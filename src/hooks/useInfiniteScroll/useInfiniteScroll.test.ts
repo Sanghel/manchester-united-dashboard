@@ -16,7 +16,9 @@ describe('useInfiniteScroll', () => {
     )
   })
 
-  afterEach(() => vi.unstubAllGlobals())
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
 
   it('returns a ref', () => {
     const { result } = renderHook(() => useInfiniteScroll({ onLoadMore: vi.fn() }))

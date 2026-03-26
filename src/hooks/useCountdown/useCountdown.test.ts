@@ -3,8 +3,12 @@ import { renderHook, act } from '@testing-library/react'
 import { useCountdown } from './useCountdown'
 
 describe('useCountdown', () => {
-  beforeEach(() => vi.useFakeTimers())
-  afterEach(() => vi.useRealTimers())
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
 
   it('starts with initial count', () => {
     const { result } = renderHook(() => useCountdown(60))

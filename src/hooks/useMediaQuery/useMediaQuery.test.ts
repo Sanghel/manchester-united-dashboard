@@ -17,7 +17,9 @@ describe('useMediaQuery', () => {
     return mql
   }
 
-  afterEach(() => vi.restoreAllMocks())
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
 
   it('returns true when query matches', () => {
     mockMatchMedia(true)
