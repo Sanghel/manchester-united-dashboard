@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { createPlayer, createPlayerList } from '../playerFactory'
+import type { FormResult } from '@/types/player'
 
 describe('playerFactory', () => {
   describe('createPlayer', () => {
@@ -74,7 +75,7 @@ describe('playerFactory', () => {
     })
 
     it('creates a player with custom form', () => {
-      const form = { last5: ['W', 'W', 'W', 'W', 'W'] as const, averageRating: 8.5 }
+      const form = { last5: ['W', 'W', 'W', 'W', 'W'] as FormResult[], averageRating: 8.5 }
       const player = createPlayer({ form })
 
       expect(player.form).toEqual(form)
