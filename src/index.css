@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 :root {
+  /* MU Brand Design Tokens */
+  --mu-red-primary: #da291c;
+  --mu-red-secondary: #c1232b;
+  --mu-gold: #ffb81c;
+  --bg-dark: #1a1a1a;
+  --bg-card: #2a2a2a;
+  --bg-sidebar: #0e1117;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --success-green: #10b981;
+  --warning-orange: #f59e0b;
+  --error-red: #ef4444;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
