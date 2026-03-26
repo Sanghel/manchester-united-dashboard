@@ -1,0 +1,42 @@
+import { describe, it, expect } from 'vitest'
+import { renderHook, act } from '@testing-library/react'
+import { useToggle } from './useToggle'
+
+describe('useToggle', () => {
+  it('starts with false by default', () => {
+    const { result } = renderHook(() => useToggle())
+    expect(result.current[0]).toBe(false)
+  })
+
+  it('starts with provided initial value', () => {
+    const { result } = renderHook(() => useToggle(true))
+    expect(result.current[0]).toBe(true)
+  })
+
+  it('toggles from false to true', () => {
+    const { result } = renderHook(() => useToggle())
+    act(() => result.current[1]())
+    expect(result.current[0]).toBe(true)
+  })
+
+  it('toggles back to false', () => {
+    const { result } = renderHook(() => useToggle(true))
+    act(() => result.current[1]())
+    expect(result.current[0]).toBe(false)
+  })
+
+  it('provides a stable toggle function', () => {
+    const { result, rerender } = renderHook(() => useToggle())
+    const toggle1 = result.current[1]
+    rerender()
+    expect(result.current[1]).toBe(toggle1)
+  })
+
+  it('sets value directly via third return', () => {
+    const { result } = renderHook(() => useToggle())
+    act(() => result.current[2](true))
+    expect(result.current[0]).toBe(true)
+    act(() => result.current[2](false))
+    expect(result.current[0]).toBe(false)
+  })
+})
