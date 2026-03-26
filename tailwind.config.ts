@@ -1,10 +1,8 @@
 import type { Config } from 'tailwindcss'
+import { colors } from './src/styles/tokens/colors'
 
 const config: Config = {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -21,6 +19,7 @@ const config: Config = {
           900: '#1e3a8a',
           950: '#172554',
         },
+        ...colors,
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -31,4 +30,3 @@ const config: Config = {
 }
 
 export default config
-
